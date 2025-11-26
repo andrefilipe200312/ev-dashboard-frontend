@@ -43,6 +43,33 @@
 
 .overview-tab{ display:flex; flex-direction:column; gap:2rem;}
 .overview-stats{ display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:1.2rem;}
+.overview-tab table {
+  color: #fff;
+}
+
+.overview-tab th {
+  color: #d1d5db;  /* cinza claro para os headers */
+  font-weight: 600;
+  background: transparent;
+  padding: 0.45rem 0.15rem;
+  border-bottom: 1px solid #334155;
+}
+
+.overview-tab td {
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.38rem 0.15rem;
+  border-bottom: 1px solid #232b3e;
+}
+
+.overview-tab tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.overview-tab b {
+  color: inherit;
+}
+
 
 .stat-card { background: rgba(59, 130, 246, 0.12); border-radius: 1.1rem; padding: 1.1rem; box-shadow: 0 2px 10px rgba(30, 58, 138, 0.05);}
 .stat-card-header{ display:flex; align-items:center; justify-content:space-between;}
@@ -122,4 +149,172 @@
 /* Garante que os links no popup sejam legíveis */
 .leaflet-container a {
     color: #3b82f6;
+}
+
+
+
+
+
+
+/* TrendsTab - grid de stats e duplas colunas */
+.trends-root {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.trends-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(1,minmax(0,1fr));
+  gap: 1.5rem;
+}
+@media (min-width:640px){
+  .trends-stats-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (min-width:1024px){
+  .trends-stats-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
+}
+.trends-two-col-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width:1024px){
+  .trends-two-col-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* StatCard variantes de cores (opcional, senão fica do azul padrão) */
+.bg-gradient-blue {
+  background-image: linear-gradient(to bottom right, rgba(59,130,246,0.2), rgba(37,99,235,0.2));
+}
+.bg-gradient-green {
+  background-image: linear-gradient(to bottom right, rgba(16,185,129,0.2), rgba(5,150,105,0.2));
+}
+.bg-gradient-orange {
+  background-image: linear-gradient(to bottom right, rgba(249,115,22,0.2), rgba(234,88,12,0.2));
+}
+.bg-gradient-purple {
+  background-image: linear-gradient(to bottom right, rgba(168,85,247,0.2), rgba(147,51,234,0.2));
+}
+
+.icon-gradient-blue { background-image: linear-gradient(to bottom right, #3b82f6, #2563eb);}
+.icon-gradient-green { background-image: linear-gradient(to bottom right, #10b981, #059669);}
+.icon-gradient-orange { background-image: linear-gradient(to bottom right, #f97316, #ea580c);}
+.icon-gradient-purple { background-image: linear-gradient(to bottom right, #a855f7, #9333ea);}
+
+/* Para os títulos e corpo dos cartões de gráfico, se quiseres uniformizar todos */
+.chart-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.chart-card-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.chart-card-body {
+  margin-top: 0.5rem;
+  height: 100%;
+}
+
+/* Pie labels e tooltips no tema escuro (opcional, mas melhora a UX do gráfico) */
+.recharts-tooltip-wrapper, .recharts-default-tooltip {
+  color: #fff !important;
+  background: #0f172a !important;
+  border: 1px solid #334155 !important;
+  border-radius: 12px !important;
+  font-size: .95rem !important;
+}
+.period-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem 1.2rem;
+  padding: 1.2rem 0;
+  border-radius: 1rem;
+  margin-bottom: 2.2rem;
+}
+
+.filter-label {
+  color: #94a3b8;
+  font-weight: 500;
+  font-size: 1.08rem;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  min-width: 110px;
+}
+
+.period-btn {
+  padding: .6rem 1.15rem;
+  border-radius: .65rem;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: #192038;
+  color: #a5b4fc;
+  font-weight: 600;
+  transition: .15s;
+  min-width: 108px;
+  white-space: nowrap;
+}
+
+.period-btn.active,
+.period-btn:focus,
+.period-btn:hover {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.period-date-input {
+  border: none;
+  outline: none;
+  padding: .6rem 1rem;
+  border-radius: .65rem;
+  background: #1e263b;
+  color: #fff;
+  font-size: 1rem;
+  margin-right: .18rem;
+  min-width: 128px;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.registos-label {
+  color: #94a3b8;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .period-filter-bar {
+    gap: .55rem 0.7rem;
+  }
+  /* Inputs e registos passam para linhs seguinte só quando não cabem */
+  .period-date-input, .registos-label {
+    flex-basis: 100%;
+    margin-left: 0;
+    margin-top: .45rem;
+    margin-bottom: .1rem;
+    text-align: left;
+  }
+}
+
+.period-date-group {
+  display: flex;
+  gap: .3rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+@media (max-width: 760px) {
+  .period-date-group {
+    flex-basis: 100%;
+    margin-top: .45rem;
+    margin-bottom: .1rem;
+  }
 }
